@@ -45,7 +45,7 @@ function VerifyOTP() {
       setIsSubmitting(true);
 
       const response = await fetch(
-        "http://localhost:5000/api/auth/verify-otp",
+        "https://saferoutemap-backend-2aql.onrender.com/api/auth/verify-otp",
         {
           method: "POST",
           headers: {
@@ -100,7 +100,7 @@ function VerifyOTP() {
       setIsResending(true);
 
       const response = await fetch(
-        "http://localhost:5000/api/auth/forgot-password",
+        "https://saferoutemap-backend-2aql.onrender.com/api/auth/forgot-password",
         {
           method: "POST",
           headers: {

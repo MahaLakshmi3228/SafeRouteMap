@@ -32,7 +32,7 @@ function MyReports() {
       setError("");
 
       const response = await fetch(
-        "http://localhost:5000/api/reports/my-reports",
+        "https://saferoutemap-backend-2aql.onrender.com/api/reports/my-reports",
         {
           method: "GET",
           headers: {
@@ -631,11 +631,11 @@ function MyReports() {
     <span>📷 Uploaded Photo</span>
 
     <img
-      src={`http://localhost:5000${report.photo.url}`}
+      src={`https://saferoutemap-backend-2aql.onrender.com${report.photo.url}`}
       alt="Reported hazard"
       onClick={() =>
         setSelectedPhoto(
-          `http://localhost:5000${report.photo.url}`
+          `https://saferoutemap-backend-2aql.onrender.com${report.photo.url}`
         )
       }
     />

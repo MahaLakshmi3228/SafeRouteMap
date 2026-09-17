@@ -103,7 +103,7 @@ const createSOS = async (currentLocation) => {
     }
 
     const response = await fetch(
-      "http://localhost:5000/api/sos",
+      "https://saferoutemap-backend-2aql.onrender.com/api/sos",
       {
         method: "POST",
 
@@ -237,7 +237,7 @@ setDisplaySosId(data.sos.sosId);
     }
 
     const response = await fetch(
-      `http://localhost:5000/api/sos/${sosId}/cancel`,
+      `https://saferoutemap-backend-2aql.onrender.com/api/sos/${sosId}/cancel`,
       {
         method: "PATCH",
         headers: {

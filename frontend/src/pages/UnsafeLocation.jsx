@@ -626,7 +626,7 @@ function UnsafeLocationContent() {
         setError("");
 
         const response = await fetch(
-          "http://localhost:5000/api/reports/verified"
+          "https://saferoutemap-backend-2aql.onrender.com/api/reports/verified"
         );
 
         const data =

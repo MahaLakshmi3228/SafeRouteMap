@@ -33,7 +33,7 @@ function AdminReports() {
       setError("");
 
       const response = await fetch(
-        "http://localhost:5000/api/reports/all",
+        "https://saferoutemap-backend-2aql.onrender.com/api/reports/all",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -64,7 +64,7 @@ function AdminReports() {
   const updateReportStatus = async (reportId, status) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/reports/${reportId}/status`,
+        `https://saferoutemap-backend-2aql.onrender.com/api/reports/${reportId}/status`,
         {
           method: "PATCH",
           headers: {

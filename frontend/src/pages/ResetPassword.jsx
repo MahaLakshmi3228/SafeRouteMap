@@ -36,7 +36,7 @@ function ResetPassword() {
       setIsSubmitting(true);
 
       const response = await fetch(
-        "http://localhost:5000/api/auth/reset-password",
+        "https://saferoutemap-backend-2aql.onrender.com/api/auth/reset-password",
         {
           method: "POST",
           headers: {

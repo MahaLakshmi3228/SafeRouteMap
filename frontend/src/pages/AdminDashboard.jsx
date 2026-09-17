@@ -30,7 +30,7 @@ function AdminDashboard() {
       setError("");
 
       const response = await fetch(
-        "http://localhost:5000/api/reports/all",
+        "https://saferoutemap-backend-2aql.onrender.com/api/reports/all",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -56,7 +56,7 @@ function AdminDashboard() {
 const updateReportStatus = async (reportId, status) => {
   try {
     const response = await fetch(
-      `http://localhost:5000/api/reports/${reportId}/status`,
+      `https://saferoutemap-backend-2aql.onrender.com/api/reports/${reportId}/status`,
       {
         method: "PATCH",
         headers: {
@@ -95,7 +95,7 @@ const deleteReport = async (reportId) => {
 
   try {
     const response = await fetch(
-      `http://localhost:5000/api/reports/${reportId}`,
+      `https://saferoutemap-backend-2aql.onrender.com/api/reports/${reportId}`,
       {
         method: "DELETE",
         headers: {
@@ -407,12 +407,12 @@ const deleteReport = async (reportId) => {
     </span>
 
     <img
-      src={`http://localhost:5000${report.photo.url}`}
+      src={`https://saferoutemap-backend-2aql.onrender.com${report.photo.url}`}
       alt="Reported hazard"
       className="admin-photo-image"
       onClick={() =>
         setSelectedPhoto(
-          `http://localhost:5000${report.photo.url}`
+          `https://saferoutemap-backend-2aql.onrender.com${report.photo.url}`
         )
       }
     />
