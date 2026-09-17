@@ -1,0 +1,437 @@
+/* =========================================
+   VERIFY OTP PAGE
+   ========================================= */
+
+.verify-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  background: #f5f7fb;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================================
+   LEFT SIDE
+   ========================================= */
+
+.verify-left {
+  width: 50%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f4c81, #2563eb);
+  color: white;
+  padding: 45px 70px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.verify-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.verify-brand-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.verify-left-content {
+  width: 100%;
+  max-width: 560px;
+  margin: auto 0;
+  padding-bottom: 40px;
+}
+
+.verify-left-content h1 {
+  font-size: 46px;
+  line-height: 1.15;
+  margin: 0 0 22px;
+  font-weight: 700;
+}
+
+.verify-left-content h1 span {
+  color: #bfdbfe;
+}
+
+.verify-left-content > p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #e0ecff;
+  max-width: 500px;
+  margin: 0 0 42px;
+}
+
+/* =========================================
+   BENEFITS
+   ========================================= */
+
+.verify-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.verify-benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: 17px;
+}
+
+.benefit-icon {
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 21px;
+}
+
+.verify-benefit h3 {
+  margin: 0 0 5px;
+  font-size: 17px;
+}
+
+.verify-benefit p {
+  margin: 0;
+  color: #dbeafe;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* =========================================
+   RIGHT SIDE
+   ========================================= */
+
+.verify-right {
+  width: 50%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+/* =========================================
+   CARD
+   ========================================= */
+
+.verify-card {
+  width: 100%;
+  max-width: 470px;
+  background: #ffffff;
+  padding: 46px 48px;
+  border-radius: 22px;
+  box-shadow: 0 15px 45px rgba(15, 76, 129, 0.12);
+  box-sizing: border-box;
+}
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+.verify-card-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: #eff6ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 29px;
+  margin: 0 auto 20px;
+}
+
+.verify-card h2 {
+  text-align: center;
+  margin: 0;
+  font-size: 30px;
+  color: #172033;
+}
+
+.verify-subtitle {
+  text-align: center;
+  color: #687386;
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 12px 0 24px;
+}
+
+/* =========================================
+   EMAIL BOX
+   ========================================= */
+
+.verify-email-box {
+  width: 100%;
+  min-height: 48px;
+  box-sizing: border-box;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+  padding: 10px 14px;
+  margin-bottom: 28px;
+
+  color: #334155;
+  font-size: 14px;
+  word-break: break-all;
+}
+
+/* =========================================
+   FORM
+   ========================================= */
+
+.verify-card form {
+  width: 100%;
+}
+
+.verify-card label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 9px;
+}
+
+.otp-input {
+  width: 100%;
+  height: 62px;
+  box-sizing: border-box;
+
+  border: 1.5px solid #d1d5db;
+  border-radius: 11px;
+
+  outline: none;
+
+  text-align: center;
+
+  font-size: 28px;
+  font-weight: 600;
+
+  letter-spacing: 10px;
+
+  color: #172033;
+
+  padding-left: 10px;
+
+  transition: all 0.2s ease;
+}
+
+.otp-input::placeholder {
+  color: #cbd5e1;
+  letter-spacing: 10px;
+}
+
+.otp-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.otp-hint {
+  text-align: center;
+  color: #8a94a6;
+  font-size: 13px;
+  margin: 10px 0 22px;
+}
+
+/* =========================================
+   VERIFY BUTTON
+   ========================================= */
+
+.verify-button {
+  width: 100%;
+  height: 52px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #2563eb;
+  color: white;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.verify-button:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.verify-button:disabled {
+  background: #93c5fd;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* =========================================
+   RESEND OTP
+   ========================================= */
+
+.resend-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  margin-top: 22px;
+
+  font-size: 14px;
+  color: #687386;
+}
+
+.resend-disabled {
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.resend-button {
+  border: none;
+  background: transparent;
+
+  color: #2563eb;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  padding: 0;
+}
+
+.resend-button:hover {
+  text-decoration: underline;
+}
+
+.resend-button:disabled {
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* =========================================
+   CHANGE EMAIL
+   ========================================= */
+
+.verify-back {
+  text-align: center;
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid #eef2f7;
+}
+
+.verify-back a {
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.verify-back a:hover {
+  text-decoration: underline;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 900px) {
+
+  .verify-page {
+    flex-direction: column;
+  }
+
+  .verify-left {
+    width: 100%;
+    min-height: auto;
+    padding: 30px;
+  }
+
+  .verify-left-content {
+    margin: 60px auto 20px;
+    text-align: center;
+  }
+
+  .verify-left-content h1 {
+    font-size: 38px;
+  }
+
+  .verify-left-content > p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .verify-benefit {
+    text-align: left;
+  }
+
+  .verify-right {
+    width: 100%;
+    min-height: auto;
+    padding: 40px 20px;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+   ========================================= */
+
+@media (max-width: 500px) {
+
+  .verify-left {
+    padding: 25px 20px;
+  }
+
+  .verify-brand {
+    font-size: 24px;
+  }
+
+  .verify-left-content h1 {
+    font-size: 32px;
+  }
+
+  .verify-card {
+    padding: 35px 24px;
+    border-radius: 18px;
+  }
+
+  .verify-card h2 {
+    font-size: 26px;
+  }
+
+  .otp-input {
+    height: 58px;
+    font-size: 24px;
+    letter-spacing: 7px;
+  }
+
+  .otp-input::placeholder {
+    letter-spacing: 7px;
+  }
+
+  .resend-section {
+    flex-direction: column;
+    gap: 5px;
+  }
+}

@@ -1,0 +1,208 @@
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+  width: 100%;
+  height: 78px;
+  background: #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 55px;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.18);
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  color: white;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* =========================
+   NAVIGATION LINKS
+========================= */
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 100%;
+}
+
+.nav-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 42px;
+  padding: 0 13px;
+
+  color: #f8fafc;
+  text-decoration: none;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  border-radius: 8px;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* Hover */
+
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #38bdf8;
+  transform: translateY(-1px);
+}
+
+/* =========================
+   MY REPORTS
+========================= */
+
+.nav-links a:last-of-type {
+  color: #e2e8f0;
+}
+
+/* =========================
+   LOGOUT BUTTON
+========================= */
+
+.logout-button {
+  height: 42px;
+
+  padding: 0 20px;
+
+  margin-left: 6px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: #ef4444;
+  color: white;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.logout-button:hover {
+  background: #dc2626;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 12px rgba(239, 68, 68, 0.25);
+}
+
+.logout-button:active {
+  transform: translateY(0);
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1100px) {
+  .navbar {
+    padding: 0 25px;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
+  .nav-links {
+    gap: 3px;
+  }
+
+  .nav-links a {
+    padding: 0 9px;
+    font-size: 14px;
+  }
+
+  .logout-button {
+    padding: 0 15px;
+    font-size: 14px;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 850px) {
+  .navbar {
+    height: auto;
+    min-height: 70px;
+    padding: 15px 20px;
+
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav-links {
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    gap: 6px;
+  }
+
+  .nav-links a {
+    height: 38px;
+    font-size: 14px;
+  }
+
+  .logout-button {
+    height: 38px;
+  }
+}
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 500px) {
+  .logo {
+    font-size: 22px;
+  }
+
+  .nav-links a {
+    padding: 0 8px;
+    font-size: 13px;
+  }
+
+  .logout-button {
+    padding: 0 12px;
+    font-size: 13px;
+  }
+}
