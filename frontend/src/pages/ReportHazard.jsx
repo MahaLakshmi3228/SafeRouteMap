@@ -684,17 +684,20 @@ const response = await fetch(
   removePhoto();
   setAnonymous(false);
 
-} catch (error) {
+
+  } catch (error) {
   console.error(
     "Hazard report submission error:",
     error
   );
 
   alert(
-    "Unable to connect to the server. Please make sure the backend is running."
+    "Report submission failed:\n" +
+      (error.message || "Unknown error")
   );
+}
 
-} finally {
+ finally {
   setIsSubmitting(false);
 }
   };
