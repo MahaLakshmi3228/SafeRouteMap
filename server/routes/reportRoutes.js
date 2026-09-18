@@ -297,7 +297,34 @@ router.patch(
     }
   }
 );
+// ==========================================
+// GET MY REPORTS - LOGGED-IN USER
+// ==========================================
 
+router.get(
+  "/my-reports",
+  authMiddleware,
+  async (req, res) => {
+    try {
+      const reports = await Report.find({
+        userId: req.user.userId,
+      })
+        .populate("userId", "name email")
+        .sort({ createdAt: -1 });
+
+      res.status(200).json({
+        message: "My reports fetched successfully",
+        reports,
+      });
+    } catch (error) {
+      console.error("Fetch my reports error:", error);
+
+      res.status(500).json({
+        message: "Server error while fetching your reports",
+      });
+    }
+  }
+);
 // ==========================================
 // GET VERIFIED REPORTS - PUBLIC
 // ==========================================
