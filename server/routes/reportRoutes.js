@@ -297,6 +297,34 @@ router.patch(
     }
   }
 );
+
+// ==========================================
+// GET ALL REPORTS - ADMIN ONLY
+// ==========================================
+
+router.get(
+  "/all",
+  authMiddleware,
+  adminMiddleware,
+  async (req, res) => {
+    try {
+      const reports = await Report.find()
+        .populate("userId", "name email")
+        .sort({ createdAt: -1 });
+
+      res.status(200).json({
+        message: "All reports fetched successfully",
+        reports,
+      });
+    } catch (error) {
+      console.error("Fetch all reports error:", error);
+
+      res.status(500).json({
+        message: "Server error while fetching reports",
+      });
+    }
+  }
+);
 // ==========================================
 // GET MY REPORTS - LOGGED-IN USER
 // ==========================================
