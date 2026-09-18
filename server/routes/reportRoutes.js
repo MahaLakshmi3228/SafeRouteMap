@@ -13,199 +13,177 @@ const router = express.Router();
 // CREATE A NEW HAZARD REPORT
 // ==========================================
 
-router.post("/",authMiddleware,upload.single("photo"),async (req, res) => {
-  try {
-    const {
-      title,
-      category,
-      severity,
-      riskTime,
-      description,
-      location,
-      photo,
-      anonymous,
-    } = req.body;
-
-    let parsedLocation;
-
-try {
-  parsedLocation =
-    typeof location === "string"
-      ? JSON.parse(location)
-      : location;
-} catch (error) {
-  return res.status(400).json({
-    message: "Invalid location data",
-  });
-}
-
-    // -------------------------------
-    // Validate required fields
-    // -------------------------------
-
-    if (!title || !title.trim()) {
-      return res.status(400).json({
-        message: "Hazard title is required",
-      });
-    }
-
-    if (!category) {
-      return res.status(400).json({
-        message: "Hazard category is required",
-      });
-    }
-
-    if (!severity) {
-      return res.status(400).json({
-        message: "Hazard severity is required",
-      });
-    }
-
-    if (!description || !description.trim()) {
-      return res.status(400).json({
-        message: "Hazard description is required",
-      });
-    }
-
-    if (!parsedLocation) {
-      return res.status(400).json({
-        message: "Hazard location is required",
-      });
-    }
-
-   if (
-  parsedLocation.latitude === undefined ||
-  parsedLocation.longitude === undefined
-) {
-      return res.status(400).json({
-        message: "Latitude and longitude are required",
-      });
-    }
-
-    // -------------------------------
-    // Generate report ID
-    // -------------------------------
-
-    const reportId =
-      "RPT-" +
-      Date.now() +
-      "-" +
-      crypto.randomBytes(3).toString("hex").toUpperCase();
-
-    // -------------------------------
-    // Create report
-    // -------------------------------
-
-    const report = await Report.create({
-      reportId,
-
-      // User ID comes from JWT middleware
-      userId: req.user.userId,
-
-      title: title.trim(),
-
-      category,
-
-      severity,
-
-      riskTime: riskTime || "",
-
-      description: description.trim(),
-
-      location: {
-  address: parsedLocation.address || "",
-  latitude: Number(parsedLocation.latitude),
-  longitude: Number(parsedLocation.longitude),
-},
-
-      photo: {
-  url: req.file ? `/uploads/${req.file.filename}` : "",
-  fileName: req.file ? req.file.originalname : "",
-},
-
-     anonymous: anonymous === true || anonymous === "true",
-
-      status: "Pending",
-    });
-
-    // -------------------------------
-    // Send response
-    // -------------------------------
-
-    res.status(201).json({
-      message: "Hazard report submitted successfully",
-
-      report: {
-        id: report._id,
-        reportId: report.reportId,
-        title: report.title,
-        category: report.category,
-        severity: report.severity,
-        status: report.status,
-        createdAt: report.createdAt,
-      },
-    });
-
-  } catch (error) {
-    console.error("Create report error:", error);
-
-    res.status(500).json({
-      message: "Server error while creating hazard report",
-    });
-  }
-});
-
-
-// ==========================================
-// GET LOGGED-IN USER'S REPORTS
-// ==========================================
-
-router.get("/my-reports", authMiddleware, async (req, res) => {
-  try {
-    const reports = await Report.find({
-      userId: req.user.userId,
-    }).sort({
-      createdAt: -1,
-    });
-
-    res.status(200).json({
-      message: "Reports fetched successfully",
-      reports,
-    });
-
-  } catch (error) {
-    console.error("Fetch reports error:", error);
-
-    res.status(500).json({
-      message: "Server error while fetching reports",
-    });
-  }
-});
-
-
-router.get(
-  "/all",
+router.post(
+  "/",
   authMiddleware,
-  adminMiddleware,
+  (req, res, next) => {
+    upload.single("photo")(req, res, (error) => {
+      if (error) {
+        console.error("Photo upload error:", error);
+
+        return res.status(400).json({
+          message: error.message || "Photo upload failed",
+        });
+      }
+
+      next();
+    });
+  },
   async (req, res) => {
     try {
-      const reports = await Report.find()
-        .populate("userId", "name email")
-        .sort({ createdAt: -1 });
+      const {
+        title,
+        category,
+        severity,
+        riskTime,
+        description,
+        location,
+        anonymous,
+      } = req.body;
 
-      res.status(200).json({
-        message: "All reports fetched successfully",
-        reports,
+      let parsedLocation;
+
+      try {
+        parsedLocation =
+          typeof location === "string"
+            ? JSON.parse(location)
+            : location;
+      } catch (error) {
+        return res.status(400).json({
+          message: "Invalid location data",
+        });
+      }
+
+      // -------------------------------
+      // Validate required fields
+      // -------------------------------
+
+      if (!title || !title.trim()) {
+        return res.status(400).json({
+          message: "Hazard title is required",
+        });
+      }
+
+      if (!category) {
+        return res.status(400).json({
+          message: "Hazard category is required",
+        });
+      }
+
+      if (!severity) {
+        return res.status(400).json({
+          message: "Hazard severity is required",
+        });
+      }
+
+      if (!description || !description.trim()) {
+        return res.status(400).json({
+          message: "Hazard description is required",
+        });
+      }
+
+      if (!parsedLocation) {
+        return res.status(400).json({
+          message: "Hazard location is required",
+        });
+      }
+
+      if (
+        parsedLocation.latitude === undefined ||
+        parsedLocation.longitude === undefined
+      ) {
+        return res.status(400).json({
+          message: "Latitude and longitude are required",
+        });
+      }
+
+      // -------------------------------
+      // Generate report ID
+      // -------------------------------
+
+      const reportId =
+        "RPT-" +
+        Date.now() +
+        "-" +
+        crypto
+          .randomBytes(3)
+          .toString("hex")
+          .toUpperCase();
+
+      // -------------------------------
+      // Create report
+      // -------------------------------
+
+      const report = await Report.create({
+        reportId,
+
+        userId: req.user.userId,
+
+        title: title.trim(),
+
+        category,
+
+        severity,
+
+        riskTime: riskTime || "",
+
+        description: description.trim(),
+
+        location: {
+          address: parsedLocation.address || "",
+          latitude: Number(parsedLocation.latitude),
+          longitude: Number(parsedLocation.longitude),
+        },
+
+        photo: {
+          url: req.file
+            ? `/uploads/${req.file.filename}`
+            : "",
+          fileName: req.file
+            ? req.file.originalname
+            : "",
+        },
+
+        anonymous:
+          anonymous === true ||
+          anonymous === "true",
+
+        status: "Pending",
       });
+
+      // -------------------------------
+      // Send response
+      // -------------------------------
+
+      res.status(201).json({
+        message:
+          "Hazard report submitted successfully",
+
+        report: {
+          id: report._id,
+          reportId: report.reportId,
+          title: report.title,
+          category: report.category,
+          severity: report.severity,
+          status: report.status,
+          createdAt: report.createdAt,
+        },
+      });
+
     } catch (error) {
-      console.error("Fetch all reports error:", error);
+      console.error(
+        "Create report error:",
+        error
+      );
 
       res.status(500).json({
-        message: "Server error while fetching reports",
+        message:
+          "Server error while creating hazard report",
       });
     }
   }
 );
+
 // ==========================================
 // DELETE REPORT - ADMIN ONLY
 // ==========================================

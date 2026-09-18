@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+const BACKEND_URL = "https://saferoutemap-backend-2aql.onrender.com";
 import { Link, useNavigate } from "react-router-dom";
 import "./MyReports.css";
 
@@ -625,8 +626,7 @@ function MyReports() {
                   {/* =========================
                       PHOTO
                   ========================= */}
-
-                  {report.photo?.url && (
+{report.photo?.url && (
   <div className="report-photo">
     <span>📷 Uploaded Photo</span>
 
