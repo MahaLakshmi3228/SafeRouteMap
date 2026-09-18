@@ -30,6 +30,7 @@ router.post(
     });
   },
   async (req, res) => {
+      console.log("📸 Uploaded file:", req.file);
     try {
       const {
         title,
